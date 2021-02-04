@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block title %}Produccion de leche{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card" style="margin-top: 10px;">
+        <div class="card-header" style="background-color: rgb(71, 79, 90); color:white; font-size: 18px;">
+            Eliminacion del registro
+            {% block boton-crear %}<a href="#" class="btn btn-outline-warning btn-sm boton-crear">Nuevo registro</a>{% endblock %}
+        </div>
+        <div class="card-body">
+            <form method="post">{% csrf_token %}
+                <p>Queres eliminar el registro del "{{ object }}"?</p>
+                <input type="submit" class="btn btn-danger btn-sm" value="Confirmar">
+                <a class="btn btn-warning btn-sm" href="{% url 'produccion:registro_list' %}">Cancelar</a>
+            </form>
+        </div>
+{% endblock %}

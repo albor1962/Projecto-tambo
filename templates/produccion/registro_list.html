@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block title %}Existencia de hacienda{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card" style="margin-top: 10px;">
+        <div class="card-header" style="background-color: rgb(71, 79, 90); color:white; font-size: 18px;">
+            Registrar datos de produccion
+            {% block boton-crear %}<a href="{% url 'produccion:registro_crear' %}" class="btn btn-outline-warning btn-sm boton-crear">Nuevo registro</a>{% endblock %}
+        </div>
+        <div class="card-body">
+            <table id="example" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for reg in object_list %}
+                  <tr>
+                      <td>{{reg.fecha}}</td>
+                      <td>
+                      <a href="{% url 'produccion:registro_editar' reg.id %}" class="btn btn-warning btn-sm">Editar la carga de datos</a>
+                      <a href="{% url 'produccion:registro_eliminar' reg.id %}" class="btn btn-danger btn-sm">Borrar el registro</a>
+                      </td>
+                  </tr>      
+              </tbody>
+              {% endfor %}
+              {% else %}
+              <h3>No hay registros cargados en el sistema</h3>
+              {% endif %}
+        </div>
+          </table>
+    </div>
+</div>
+{% endblock content %}

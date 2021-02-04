@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% block title %}Produccion de leche{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card" style="margin-top: 10px;">
+        <div class="card-header" style="background-color:#ffc107; color:black; font-size: 18px;">
+            Listado de ingreso de alimentos
+            <!-- {% block boton-crear %}<a href="#" class="btn btn-outline-warning btn-sm boton-crear">Nuevo registro</a>{% endblock %} -->
+        </div>
+        <div class="card-body">
+            <table id="example" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Tipo</th>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                      <th>Precio unit.</th>
+                      <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for al in object_list %}
+                  <tr>
+                      <td>{{al.fecha}}</td>
+                      <td>{{al.tipo}}</td>
+                      <td>{{al.nombre}}</td>
+                      <td>{{al.cant}}</td>
+                      <td>{{al.precio_unit | floatformat:2}}</td>
+                      <td><a href="#" class="btn btn-warning btn-sm">Editar</a>
+                      <a href="#" class="btn btn-danger btn-sm">Borrar</a></td>
+                  </tr>      
+              </tbody>
+              {% endfor %}
+              {% else %}
+              <h3>No hay registros cargados en el sistema</h3>
+              {% endif %}
+        </div>
+          </table>
+    </div>
+</div>
+{% endblock content %}
